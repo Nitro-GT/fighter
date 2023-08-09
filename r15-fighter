@@ -1,0 +1,138 @@
+ -- -gh 12496458143
+ -- http://www.roblox.com/asset/?id=2626152169
+_G.Run = false
+local c = game.Players.LocalPlayer.Character
+local song = Instance.new("Sound",c)
+song.SoundId = getcustomasset("shadow.mp3")
+song.Looped = true
+song.Volume = 1
+song:Play()
+for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+local h = c.Humanoid
+h.UseJumpPower = true
+local a = c.Animate
+local olh = h.HipHeight
+h.HipHeight = olh+.25
+local UserInputService = game:GetService("UserInputService")
+if _G.Run == false then
+h.WalkSpeed = 24
+a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
+else
+h.WalkSpeed = 45
+a.run.RunAnim.AnimationId = "rbxassetid://13761220615"
+end
+a.fall:Destroy()
+a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
+a.idle.Animation1.AnimationId = "rbxassetid://3303162274"
+a.idle.Animation2.AnimationId = "rbxassetid://3303162549"
+a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
+     local slice = Instance.new("Animation")
+     slice.AnimationId = "rbxassetid://13882574863"
+     local slicep = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(slice)
+      slicep.Looped = false
+      
+     local slice2 = Instance.new("Animation")
+     slice2.AnimationId = "rbxassetid://13882579000"
+     local slicep2 = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(slice2)
+      slicep2.Looped = false
+      
+     local punch = Instance.new("Animation")
+     punch.AnimationId = "rbxassetid://13593839963"
+     local punchp = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(punch)
+        punchp.Looped = false
+        
+     local pto = Instance.new("Animation")
+     pto.AnimationId = "rbxassetid://13574621523"
+     local ptop = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(pto)
+     ptop.Looped = false
+     
+     local kick = Instance.new("Animation")
+     kick.AnimationId = "rbxassetid://13593830055"
+     local kickp = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(kick)
+     kickp.Looped = false
+     local function fix(anim)
+     wait(anim.Length)
+     anim:Stop()
+              for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+h.JumpPower = 0.1
+wait(.005)
+h.Jump = true
+wait(.005)
+h.JumpPower = 50
+end
+UserInputService.InputBegan:Connect(function(Input, IsTyping)
+if IsTyping == false then
+if Input.KeyCode == Enum.KeyCode.E then
+   slicep:Play()
+   slicep.Looped = false
+    slicep.Ended:Connect(function()
+    slicep:Stop()
+    end)
+ fix(slicep)
+   elseif  Input.KeyCode == Enum.KeyCode.R then
+   slicep2:Play()
+   slicep2.Looped = false
+    slicep2.Ended:Connect(function()
+    slicep2:Stop()
+    end)
+fix(slicep2)
+      elseif  Input.KeyCode == Enum.KeyCode.Q then
+      h.HipHeight = olh
+   punchp:Play()
+   punchp.Looped = false
+   punchp.Ended:Connect(function()
+   h.HipHeight = olh + .25
+   punchp:Stop()
+   end)
+  fix(punchp)
+    elseif  Input.KeyCode == Enum.KeyCode.T then
+      h.HipHeight = olh
+   ptop:Play()
+   ptop.Looped = false
+   ptop.Ended:Connect(function()
+   h.HipHeight = olh + .25
+   ptop:Stop()
+   end)
+fix(ptop)
+    elseif  Input.KeyCode == Enum.KeyCode.F then
+      h.HipHeight = olh
+   kickp:Play()
+   kickp.Looped = false
+   kickp.Ended:Connect(function()
+   h.HipHeight = olh + .25
+   kickp:Stop()
+   end)
+fix(kickp)
+   elseif  Input.KeyCode == Enum.KeyCode.Z then 
+         for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+   if h.WalkSpeed >= 45 then
+h.WalkSpeed = 24
+h.HipHeight = olh + .25
+a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
+else
+h.HipHeight = olh
+h.WalkSpeed = 45
+a.run.RunAnim.AnimationId = "rbxassetid://13761220615"
+end
+h.JumpPower = 0.1
+wait(.005)
+h.Jump = true
+wait(.005)
+h.JumpPower = 50
+end
+end
+end)
+ local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
+for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
+if v.Name == "RunAnim" then
+v:AdjustSpeed(1.1059)
+	end
+	end
+	end)
+	
