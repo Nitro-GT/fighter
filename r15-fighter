@@ -1,5 +1,4 @@
- -- -gh 12496458143
- -- http://www.roblox.com/asset/?id=2626152169
+ -- 12868896868 (mask) 14034498022 (sword)
 _G.Run = false
 local c = game.Players.LocalPlayer.Character
 local song = Instance.new("Sound",c)
@@ -30,52 +29,64 @@ a.idle.Animation2.AnimationId = "rbxassetid://3303162549"
 a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
      local slice = Instance.new("Animation")
      slice.AnimationId = "rbxassetid://13882574863"
-     local slicep = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(slice)
+     local slicep = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice)
       slicep.Looped = false
       
      local slice2 = Instance.new("Animation")
      slice2.AnimationId = "rbxassetid://13882579000"
-     local slicep2 = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(slice2)
-      slicep2.Looped = false
-      
+     local slicep2 = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice2)
+
      local punch = Instance.new("Animation")
      punch.AnimationId = "rbxassetid://13593839963"
-     local punchp = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(punch)
-        punchp.Looped = false
+     local punchp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(punch)
         
      local pto = Instance.new("Animation")
      pto.AnimationId = "rbxassetid://13574621523"
-     local ptop = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(pto)
-     ptop.Looped = false
+     local ptop = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(pto)
      
      local kick = Instance.new("Animation")
      kick.AnimationId = "rbxassetid://13593830055"
-     local kickp = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(kick)
-     kickp.Looped = false
+     local kickp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(kick)
+     
      local function fix(anim)
      wait(anim.Length)
+     wait(0.025)
      anim:Stop()
-              for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
-    v:Stop()
-end
+     for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+     	v:Stop()
+	 end
+	    h.HipHeight = olh + .25
 h.JumpPower = 0.1
-wait(.005)
+wait(.025)
 h.Jump = true
-wait(.005)
+wait(.025)
 h.JumpPower = 50
+wait(.005)
+anim:Stop()
+wait(.005)
+anim:Stop()
+wait(.005)
+anim:Stop()
 end
+local function animp(id)
+      h.HipHeight = olh
+     local annim = Instance.new("Animation")
+     annim.AnimationId = "rbxassetid://"..id
+     local animp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(annim)
+     animp:Play()
+     wait()
+     fix(animp)
+     end
 UserInputService.InputBegan:Connect(function(Input, IsTyping)
 if IsTyping == false then
 if Input.KeyCode == Enum.KeyCode.E then
    slicep:Play()
-   slicep.Looped = false
     slicep.Ended:Connect(function()
     slicep:Stop()
     end)
  fix(slicep)
    elseif  Input.KeyCode == Enum.KeyCode.R then
    slicep2:Play()
-   slicep2.Looped = false
     slicep2.Ended:Connect(function()
     slicep2:Stop()
     end)
@@ -83,7 +94,6 @@ fix(slicep2)
       elseif  Input.KeyCode == Enum.KeyCode.Q then
       h.HipHeight = olh
    punchp:Play()
-   punchp.Looped = false
    punchp.Ended:Connect(function()
    h.HipHeight = olh + .25
    punchp:Stop()
@@ -92,7 +102,6 @@ fix(slicep2)
     elseif  Input.KeyCode == Enum.KeyCode.T then
       h.HipHeight = olh
    ptop:Play()
-   ptop.Looped = false
    ptop.Ended:Connect(function()
    h.HipHeight = olh + .25
    ptop:Stop()
@@ -101,7 +110,6 @@ fix(ptop)
     elseif  Input.KeyCode == Enum.KeyCode.F then
       h.HipHeight = olh
    kickp:Play()
-   kickp.Looped = false
    kickp.Ended:Connect(function()
    h.HipHeight = olh + .25
    kickp:Stop()
@@ -125,6 +133,8 @@ wait(.005)
 h.Jump = true
 wait(.005)
 h.JumpPower = 50
+   elseif  Input.KeyCode == Enum.KeyCode.C then 
+   animp("13593837026")
 end
 end
 end)
