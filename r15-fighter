@@ -1,10 +1,15 @@
+ -- -gh 12496458143
+ -- http://www.roblox.com/asset/?id=2626152169
+ -- 0, -0.149954513, -2.25, -1, 0, 0, 0, 1, 0, 0, 0, -1
  -- 12868896868 (mask) 14034498022 (sword)
+ --   animp(93648331)
 _G.Run = false
+plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
 local song = Instance.new("Sound",c)
 song.SoundId = getcustomasset("spin.mp3")
 song.Looped = true
-song.Volume = 1
+song.Volume = 3
 song:Play()
 for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
@@ -13,7 +18,7 @@ local h = c.Humanoid
 h.UseJumpPower = true
 local a = c.Animate
 local olh = h.HipHeight
-h.HipHeight = olh+.25
+h.HipHeight = olh
 local UserInputService = game:GetService("UserInputService")
 if _G.Run == false then
 h.WalkSpeed = 24
@@ -24,13 +29,12 @@ a.run.RunAnim.AnimationId = "rbxassetid://13761220615"
 end
 a.fall:Destroy()
 a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
-a.idle.Animation1.AnimationId = "rbxassetid://3303162274"
-a.idle.Animation2.AnimationId = "rbxassetid://3303162549"
+a.idle.Animation1.AnimationId = "rbxassetid://1014390418"
+a.idle.Animation2.AnimationId = "rbxassetid://1014398616"
 a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
      local slice = Instance.new("Animation")
      slice.AnimationId = "rbxassetid://13882574863"
      local slicep = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice)
-      slicep.Looped = false
       
      local slice2 = Instance.new("Animation")
      slice2.AnimationId = "rbxassetid://13882579000"
@@ -49,13 +53,15 @@ a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
      local kickp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(kick)
      
      local function fix(anim)
+     anim:AdjustSpeed(1)
      wait(anim.Length)
+     anim:AdjustSpeed(0)
      wait(0.025)
      anim:Stop()
      for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
      	v:Stop()
 	 end
-	    h.HipHeight = olh + .25
+	    h.HipHeight = olh
 h.JumpPower = 0.1
 wait(.025)
 h.Jump = true
@@ -69,7 +75,7 @@ wait(.005)
 anim:Stop()
 end
 local function animp(id)
-      h.HipHeight = olh
+      --h.HipHeight = olh
      local annim = Instance.new("Animation")
      annim.AnimationId = "rbxassetid://"..id
      local animp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(annim)
@@ -95,7 +101,7 @@ fix(slicep2)
       h.HipHeight = olh
    punchp:Play()
    punchp.Ended:Connect(function()
-   h.HipHeight = olh + .25
+   h.HipHeight = olh 
    punchp:Stop()
    end)
   fix(punchp)
@@ -103,7 +109,7 @@ fix(slicep2)
       h.HipHeight = olh
    ptop:Play()
    ptop.Ended:Connect(function()
-   h.HipHeight = olh + .25
+   h.HipHeight = olh
    ptop:Stop()
    end)
 fix(ptop)
@@ -111,7 +117,7 @@ fix(ptop)
       h.HipHeight = olh
    kickp:Play()
    kickp.Ended:Connect(function()
-   h.HipHeight = olh + .25
+   h.HipHeight = olh 
    kickp:Stop()
    end)
 fix(kickp)
@@ -119,14 +125,18 @@ fix(kickp)
          for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
 end
-   if h.WalkSpeed >= 45 then
+   if h.WalkSpeed == 16 then
 h.WalkSpeed = 24
-h.HipHeight = olh + .25
+h.HipHeight = olh 
 a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
-else
+elseif h.WalkSpeed == 24 then
 h.HipHeight = olh
 h.WalkSpeed = 45
-a.run.RunAnim.AnimationId = "rbxassetid://13761220615"
+a.run.RunAnim.AnimationId = "rbxassetid://13585113452"
+elseif h.WalkSpeed == 45 then
+h.HipHeight = olh
+h.WalkSpeed = 16 
+a.run.RunAnim.AnimationId = "rbxassetid://387947975"
 end
 h.JumpPower = 0.1
 wait(.005)
@@ -145,4 +155,3 @@ v:AdjustSpeed(1.1059)
 	end
 	end
 	end)
-	
