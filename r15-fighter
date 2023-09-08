@@ -1,19 +1,60 @@
- -- -gh 12496458143
- -- http://www.roblox.com/asset/?id=2626152169
- -- 0, -0.149954513, -2.25, -1, 0, 0, 0, 1, 0, 0, 0, -1
- -- 12868896868 (mask) 14034498022 (sword)
- --   animp(93648331)
+--R15 Fighter
+-- All you see is red, go fight
 _G.Run = false
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
 local song = Instance.new("Sound",c)
 song.SoundId = getcustomasset("spin.mp3")
 song.Looped = true
-song.Volume = 3
+song.Volume = 1
 song:Play()
 for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
 end
+C3 = Color3.new
+local alive = true
+local lplr = game:GetService("Players").LocalPlayer
+local Character = lplr.Character
+local script = game:GetObjects("rbxassetid://9717225780")[1]
+sick = song
+local VISUALS = game.Lighting
+local VISUALSSz = game.Lighting
+local Bloom = script.Bloom
+Bloom.Parent = VISUALS
+script["C-Correction"].Parent = VISUALS
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(160,0,0)
+local oldtod = game.Lighting.TimeOfDay
+function FixLighting()
+	game.Lighting.Ambient = Color3.fromRGB(70, 70, 70)
+	game.Lighting.OutdoorAmbient = Color3.fromRGB(70, 70, 70)
+	game.Lighting.FogColor = Color3.fromRGB(192, 192, 192)
+	game.Lighting.TimeOfDay = "11:00:00"
+	pcall(function()
+	VISUALS["C-Correction"]:Destroy()
+	Bloom:Destroy()
+	end)
+	game.Lighting.ExposureCompensation = 0
+	game.Lighting.FogEnd = 100000
+	game.Lighting.Brightness = 2.25
+	workspace.CurrentCamera.FieldOfView = 70 
+end
+coroutine.resume(coroutine.create(function()
+	while alive == true do
+		wait()
+			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+			VISUALS.TimeOfDay = 0
+			Bloom.Intensity = 0 + sick.PlaybackLoudness/500
+			VISUALSSz.ExposureCompensation = 0 + sick.PlaybackLoudness/130
+			VISUALSSz.FogEnd = sick.PlaybackLoudness
+			VISUALSSz.Brightness = 3
+			VISUALS.EnvironmentDiffuseScale = 0 + sick.PlaybackLoudness/100
+			VISUALS["C-Correction"].Contrast= 0.1 + sick.PlaybackLoudness/1000
+			workspace.CurrentCamera.FieldOfView = 70 - sick.PlaybackLoudness/100
+	end
+	
+end))
 local h = c.Humanoid
 h.UseJumpPower = true
 local a = c.Animate
@@ -155,3 +196,10 @@ v:AdjustSpeed(1.1059)
 	end
 	end
 	end)
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+alive = false
+task.wait(.1)
+FixLighting()
+end)
+warn("R15 Fighter - All You See Is Red, Go Fight!")
