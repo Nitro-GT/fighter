@@ -115,6 +115,122 @@ anim:Stop()
 wait(.005)
 anim:Stop()
 end
+
+ArtificialHB = Instance.new("BindableEvent", script)
+ArtificialHB.Name = "ArtificialHB"
+
+
+	function Swait(num)
+		if num == 0 or num == nil then
+			game:GetService("RunService").RenderStepped:wait()
+		else
+			for i = 1, num do
+				game:GetService("RunService").RenderStepped:wait()
+			end
+		end
+	end
+
+
+IT = Instance.new
+CF = CFrame.new
+VT = Vector3.new
+RAD = math.rad
+C3 = Color3.new
+UD2 = UDim2.new
+BRICKC = BrickColor.new
+ANGLES = CFrame.Angles
+EULER = CFrame.fromEulerAnglesXYZ
+COS = math.cos
+ACOS = math.acos
+SIN = math.sin
+ASIN = math.asin
+ABS = math.abs
+HUGE = math.huge
+SR = string.reverse
+MRANDOM = math.random
+FLOOR = math.floor
+local FONTS = {
+	Enum.Font.Antique,
+	Enum.Font.Arcade,
+	Enum.Font.Arial,
+	Enum.Font.ArialBold,
+	Enum.Font.Bodoni,
+	Enum.Font.Cartoon,
+	Enum.Font.Code,
+	Enum.Font.Fantasy,
+	Enum.Font.Garamond,
+	Enum.Font.Highway,
+	Enum.Font.Legacy,
+	Enum.Font.SciFi,
+	Enum.Font.SourceSans,
+	Enum.Font.SourceSansBold,
+	Enum.Font.SourceSansItalic,
+	Enum.Font.SourceSansLight,
+	Enum.Font.SourceSansSemibold,
+	Enum.Font.LuckiestGuy,
+	Enum.Font.Creepster,
+	Enum.Font.RobotoCondensed,
+	Enum.Font.RobotoMono,
+	Enum.Font.Fantasy,
+	Enum.Font.DenkOne,
+	Enum.Font.Cartoon,
+	Enum.Font.Oswald,
+	Enum.Font.AmaticSC
+}
+function chatfunc(text)
+	local chat = coroutine.wrap(function()
+		if Character:FindFirstChild("TalkingBillBoard")~= nil then
+			Character:FindFirstChild("TalkingBillBoard"):destroy()
+		end
+		local Bill = Instance.new("BillboardGui",c)
+		Bill.Size = UDim2.new(0,100,0,40)
+		Bill.StudsOffset = VT(0,3.5,0)
+		Bill.Adornee = c.Head
+		Bill.Name = "TalkingBillBoard"
+		local Hehe = Instance.new("TextLabel",Bill)
+		Hehe.BackgroundTransparency = 1
+		Hehe.BorderSizePixel = 0
+		Hehe.Text = text
+		Hehe.Font = "Bodoni"
+		Hehe.TextSize = 40
+		Hehe.TextStrokeTransparency = 0
+		Hehe.Size = UDim2.new(1,0,0.5,0)
+		coroutine.resume(coroutine.create(function()
+			while Hehe ~= nil do
+				Swait()	
+				Hehe.Font = FONTS[MRANDOM(1, #FONTS)]
+				Hehe.Position = UDim2.new(0, 0, .05, 0)
+				Hehe.TextColor3 =   C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+				Hehe.TextStrokeColor3 = BrickColor.Black().Color
+			end
+		end))
+		for i = 1,string.len(text),1 do
+			Swait()
+			Hehe.Text = string.sub(text,1,i)
+			if not c.Humanoid.Status:FindFirstChild("augh") then
+			local q = Instance.new("Sound",c.Humanoid.Status)
+			q.Name = "augh"
+			q.SoundId = "rbxassetid://7153189899"
+			q.Volume = 4
+			q:Play()
+			wait(q.TimeLength)
+			q:Destroy()
+			end
+		end
+		Swait(90)
+		for i = 0, 1, .025 do
+			Swait()
+			Hehe.TextStrokeTransparency = i
+			Hehe.TextTransparency = i
+		end
+		Hehe:Destroy()
+	end)
+	chat()
+end
+
+game.Players.LocalPlayer.Chatted:Connect(function(msg)
+	chatfunc(msg)
+end)
 local function animp(id)
       --h.HipHeight = olh
      local annim = Instance.new("Animation")
@@ -189,12 +305,20 @@ h.JumpPower = 50
 end
 end
 end)
+warn("R15 Fighter - All You See Is Red, Go Fight!")
+chatfunc("Sup Man!")
+local sfx = Instance.new("Sound",c)
+sfx.SoundId = "rbxassetid://184105182"
+sfx.Volume = 10
+sfx:Play()
  local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
+ pcall(function()
 for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
 if v.Name == "RunAnim" then
 v:AdjustSpeed(1.1059)
 	end
 	end
+	end)
 	end)
 
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
@@ -202,4 +326,3 @@ alive = false
 task.wait(.1)
 FixLighting()
 end)
-warn("R15 Fighter - All You See Is Red, Go Fight!")
