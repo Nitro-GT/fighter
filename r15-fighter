@@ -1,10 +1,8 @@
 --R15 Fighter
 -- All you see is red, go fight
 _G.Visualiser = true
-_G.VisColour = "r" -- r, b or w
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
-local song = Instance.new("Sound",c)
 math.randomseed(c.Head.Position.X)
 if not isfile("api.mp3") then
 writefile("api.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/api.mp3"))
@@ -18,8 +16,8 @@ if not isfile("spin.mp3") then
 writefile("spin.mp3",game:HttpGet("https://github.com/Nitro-GT/fighter/raw/main/spin.mp3"))
 end
 repeat task.wait() until isfile("spin.mp3")
-
 local n = math.random(1,3)
+local song = Instance.new("Sound",c)
 if n == 1 then
 song.SoundId = getcustomasset("api.mp3")
 elseif n == 2 then
@@ -44,11 +42,13 @@ local VISUALSSz = game.Lighting
 local Bloom = script.Bloom
 Bloom.Parent = VISUALS
 script["C-Correction"].Parent = VISUALS
-if _G.VisColour == "r" then
+math.randomseed(c.Head.Position.Z)
+local n2 = math.random(1,3)
+if n2 == 1 then
 _G.VisColour = "Red"
-elseif _G.VisColour == "b" then
+elseif  n2 == 2 then
 _G.VisColour = "Blue"
-elseif _G.VisColour == "w" then
+elseif  n2 == 3 then
 _G.VisColour = "White"
 end
 if _G.VisColour == "Red" then
