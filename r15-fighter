@@ -1,12 +1,13 @@
 --R15 Fighter
 -- All you see is red, go fight
-_G.Run = false
+_G.Visualiser = true
+_G.VisColour = "r" -- r, b or w
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
 local song = Instance.new("Sound",c)
 song.SoundId = getcustomasset("spin.mp3")
 song.Looped = true
-song.Volume = 1
+song.Volume = 5
 song:Play()
 for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
@@ -22,7 +23,20 @@ local VISUALSSz = game.Lighting
 local Bloom = script.Bloom
 Bloom.Parent = VISUALS
 script["C-Correction"].Parent = VISUALS
+if _G.VisColour == "r" then
+_G.VisColour = "Red"
+elseif _G.VisColour == "b" then
+_G.VisColour = "Blue"
+elseif _G.VisColour == "w" then
+_G.VisColour = "White"
+end
+if _G.VisColour == "Red" then
 VISUALS["C-Correction"].TintColor = Color3.fromRGB(160,0,0)
+elseif _G.VisColour == "Blue" then
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(0,0,200)
+elseif _G.VisColour == "White" then
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(255,255,255)
+end
 local oldtod = game.Lighting.TimeOfDay
 function FixLighting()
 	game.Lighting.Ambient = Color3.fromRGB(70, 70, 70)
@@ -39,21 +53,33 @@ function FixLighting()
 	workspace.CurrentCamera.FieldOfView = 70 
 end
 coroutine.resume(coroutine.create(function()
-	while alive == true do
+	while alive == true and _G.Visualiser == true do
 		wait()
+			if _G.VisColour == "Red" then
+			VISUALSSz.Brightness = 2.25
 			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
 			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
 			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+			elseif _G.VisColour == "Blue" then
+			VISUALSSz.Brightness = 2.25
+			VISUALS.FogColor =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
+			VISUALS.Ambient =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
+			VISUALS.OutdoorAmbient = C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
+			elseif _G.VisColour == "White" then
+			VISUALSSz.Brightness = 2.25
+			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS["C-Correction"].Saturation = -1
+			end
 			VISUALS.TimeOfDay = 0
 			Bloom.Intensity = 0 + sick.PlaybackLoudness/500
 			VISUALSSz.ExposureCompensation = 0 + sick.PlaybackLoudness/130
 			VISUALSSz.FogEnd = sick.PlaybackLoudness
-			VISUALSSz.Brightness = 3
 			VISUALS.EnvironmentDiffuseScale = 0 + sick.PlaybackLoudness/100
 			VISUALS["C-Correction"].Contrast= 0.1 + sick.PlaybackLoudness/1000
 			workspace.CurrentCamera.FieldOfView = 70 - sick.PlaybackLoudness/100
 	end
-	
 end))
 local h = c.Humanoid
 h.UseJumpPower = true
@@ -72,7 +98,7 @@ a.fall:Destroy()
 a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
 a.idle.Animation1.AnimationId = "rbxassetid://1014390418"
 a.idle.Animation2.AnimationId = "rbxassetid://1014398616"
-a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
+--a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
      local slice = Instance.new("Animation")
      slice.AnimationId = "rbxassetid://13882574863"
      local slicep = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice)
@@ -200,8 +226,14 @@ function chatfunc(text)
 				Swait()	
 				Hehe.Font = FONTS[MRANDOM(1, #FONTS)]
 				Hehe.Position = UDim2.new(0, 0, .05, 0)
+				if _G.VisColour == "Red" then
 				Hehe.TextColor3 =   C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
-				Hehe.TextStrokeColor3 = BrickColor.Black().Color
+			elseif _G.VisColour == "Blue" then
+				Hehe.TextColor3 =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
+			elseif _G.VisColour == "White" then
+				Hehe.TextColor3 =  C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			end
+			Hehe.TextStrokeColor3 = BrickColor.Black().Color
 			end
 		end))
 		for i = 1,string.len(text),1 do
@@ -210,7 +242,7 @@ function chatfunc(text)
 			if not c.Humanoid.Status:FindFirstChild("augh") then
 			local q = Instance.new("Sound",c.Humanoid.Status)
 			q.Name = "augh"
-			q.SoundId = "rbxassetid://7153189899"
+			q.SoundId = "rbxassetid://500472891"
 			q.Volume = 4
 			q:Play()
 			wait(q.TimeLength)
@@ -228,7 +260,7 @@ function chatfunc(text)
 	chat()
 end
 
-game.Players.LocalPlayer.Chatted:Connect(function(msg)
+local holyballs = game.Players.LocalPlayer.Chatted:Connect(function(msg)
 	chatfunc(msg)
 end)
 local function animp(id)
@@ -305,7 +337,7 @@ h.JumpPower = 50
 end
 end
 end)
-warn("R15 Fighter - All You See Is Red, Go Fight!")
+warn("R15 Fighter - All You See Is ".._G.VisColour..", Go Fight!")
 chatfunc("Sup Man!")
 local sfx = Instance.new("Sound",c)
 sfx.SoundId = "rbxassetid://184105182"
@@ -325,4 +357,9 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 alive = false
 task.wait(.1)
 FixLighting()
+connect:Disconnect()
+holyballs:Disconnect()
 end)
+if _G.Visualiser == false then
+FixLighting()
+end
