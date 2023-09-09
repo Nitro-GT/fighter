@@ -1,6 +1,6 @@
 --R15 Fighter
 -- All you see is red, go fight
-_G.Visualiser = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/autoexec/main/prompt.txt"))()
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
 math.randomseed(c.Head.Position.X)
@@ -25,6 +25,9 @@ song.SoundId = getcustomasset("spin.mp3")
 elseif n == 3 then
 song.SoundId = getcustomasset("shadow.mp3")
 end
+prompt("Visualiser?","Don't use this if you are epileptic.","Yes","No")
+repeat task.wait() until _G.pr == true or _G.pr == false
+_G.Visualiser = _G.pr
 song.Looped = true
 song.Volume = 5
 song:Play()
