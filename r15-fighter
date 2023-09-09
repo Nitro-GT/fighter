@@ -5,7 +5,11 @@ _G.VisColour = "r" -- r, b or w
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
 local song = Instance.new("Sound",c)
-song.SoundId = getcustomasset("spin.mp3")
+if not isfile("api.mp3") then
+writefile("api.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/api.mp3"))
+end
+repeat task.wait() until isfile("api.mp3")
+song.SoundId = getcustomasset("api.mp3")
 song.Looped = true
 song.Volume = 5
 song:Play()
@@ -49,7 +53,7 @@ function FixLighting()
 	end)
 	game.Lighting.ExposureCompensation = 0
 	game.Lighting.FogEnd = 100000
-	game.Lighting.Brightness = 2.25
+	game.Lighting.Brightness = 2
 	workspace.CurrentCamera.FieldOfView = 70 
 end
 coroutine.resume(coroutine.create(function()
@@ -87,13 +91,8 @@ local a = c.Animate
 local olh = h.HipHeight
 h.HipHeight = olh
 local UserInputService = game:GetService("UserInputService")
-if _G.Run == false then
 h.WalkSpeed = 24
 a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
-else
-h.WalkSpeed = 45
-a.run.RunAnim.AnimationId = "rbxassetid://13761220615"
-end
 a.fall:Destroy()
 a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
 a.idle.Animation1.AnimationId = "rbxassetid://1014390418"
