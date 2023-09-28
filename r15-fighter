@@ -3,7 +3,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/autoexec/main/prompt.txt"))()
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
-math.randomseed(c.Head.Position.X)
 if not isfile("api.mp3") then
 writefile("api.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/api.mp3"))
 end
@@ -12,24 +11,36 @@ if not isfile("shadow.mp3") then
 writefile("shadow.mp3",game:HttpGet("https://github.com/Nitro-GT/fighter/raw/main/shadow.mp3"))
 end
 repeat task.wait() until isfile("shadow.mp3")
-if not isfile("spin.mp3") then
-writefile("spin.mp3",game:HttpGet("https://github.com/Nitro-GT/fighter/raw/main/spin.mp3"))
+if not isfile("moonwaffle.wav") then
+writefile("moonwaffle.wav",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/moonwaffle%20(1).wav"))
 end
-repeat task.wait() until isfile("spin.mp3")
-local n = math.random(1,3)
+repeat task.wait() until isfile("moonwaffle.wav")
+if not isfile("wab.mp3") then
+writefile("wab.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/wab.mp3"))
+end
+repeat task.wait() until isfile("wab.mp3")
+local realn = math.random(1,4)
+math.random(tick()/realn)
+local n = math.random(1,4)
+print(n)
+n=4
 local song = Instance.new("Sound",c)
 if n == 1 then
 song.SoundId = getcustomasset("api.mp3")
 elseif n == 2 then
-song.SoundId = getcustomasset("spin.mp3")
+song.SoundId = getcustomasset("wab.mp3")
+Instance.new("DistortionSoundEffect",song).Level = 0.35
 elseif n == 3 then
 song.SoundId = getcustomasset("shadow.mp3")
+elseif n == 4 then
+song.SoundId = getcustomasset("moonwaffle.wav")
+Instance.new("DistortionSoundEffect",song).Level = 0.5
 end
 prompt("Visualiser?","Don't use this if you are epileptic.","Yes","No")
 repeat task.wait() until _G.pr == true or _G.pr == false
 _G.Visualiser = _G.pr
 song.Looped = true
-song.Volume = 5
+song.Volume = 1
 song:Play()
 for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
@@ -40,25 +51,28 @@ local lplr = game:GetService("Players").LocalPlayer
 local Character = lplr.Character
 local script = game:GetObjects("rbxassetid://9717225780")[1]
 sick = song
+song.Name = "song"
+local VisColour
 local VISUALS = game.Lighting
 local VISUALSSz = game.Lighting
 local Bloom = script.Bloom
 Bloom.Parent = VISUALS
 script["C-Correction"].Parent = VISUALS
-math.randomseed(c.Head.Position.Z)
+math.randomseed(tick()*n-55)
+print(math.random(1,3))
 local n2 = math.random(1,3)
 if n2 == 1 then
-_G.VisColour = "Red"
-elseif  n2 == 2 then
-_G.VisColour = "Blue"
+VisColour = "Red"
 elseif  n2 == 3 then
-_G.VisColour = "White"
+VisColour = "Blue"
+elseif  n2 == 2 then
+VisColour = "White"
 end
-if _G.VisColour == "Red" then
+if VisColour == "Red" then
 VISUALS["C-Correction"].TintColor = Color3.fromRGB(160,0,0)
-elseif _G.VisColour == "Blue" then
+elseif VisColour == "Blue" then
 VISUALS["C-Correction"].TintColor = Color3.fromRGB(0,0,200)
-elseif _G.VisColour == "White" then
+elseif VisColour == "White" then
 VISUALS["C-Correction"].TintColor = Color3.fromRGB(255,255,255)
 end
 local oldtod = game.Lighting.TimeOfDay
@@ -73,23 +87,25 @@ function FixLighting()
 	end)
 	game.Lighting.ExposureCompensation = 0
 	game.Lighting.FogEnd = 100000
+	game.Lighting.EnvironmentDiffuseScale = 1
 	game.Lighting.Brightness = 2
 	workspace.CurrentCamera.FieldOfView = 70 
 end
 coroutine.resume(coroutine.create(function()
 	while alive == true and _G.Visualiser == true do
 		wait()
-			if _G.VisColour == "Red" then
+			if VisColour == "Red" then
 			VISUALSSz.Brightness = 2.25
-			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
-			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
-			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
-			elseif _G.VisColour == "Blue" then
+			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS["C-Correction"].Saturation = 2.5
+			elseif VisColour == "Blue" then
 			VISUALSSz.Brightness = 2.25
-			VISUALS.FogColor =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
-			VISUALS.Ambient =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
-			VISUALS.OutdoorAmbient = C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
-			elseif _G.VisColour == "White" then
+			VISUALS.FogColor =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			VISUALS.Ambient =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			VISUALS.OutdoorAmbient = C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			elseif VisColour == "White" then
 			VISUALSSz.Brightness = 2.25
 			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
 			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
@@ -111,12 +127,12 @@ local a = c.Animate
 local olh = h.HipHeight
 h.HipHeight = olh
 local UserInputService = game:GetService("UserInputService")
-h.WalkSpeed = 24
-a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
-a.fall:Destroy()
+h.WalkSpeed = 16 
+a.run.RunAnim.AnimationId = "rbxassetid://387947975"
+a.fall.FallAnim.AnimationId = "rbxassetid://10921077030"
 a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
-a.idle.Animation1.AnimationId = "rbxassetid://1014390418"
-a.idle.Animation2.AnimationId = "rbxassetid://1014398616"
+a.idle.Animation1.AnimationId = "rbxassetid://3293641938"
+a.idle.Animation2.AnimationId = "rbxassetid://3293642554"
 --a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
      local slice = Instance.new("Animation")
      slice.AnimationId = "rbxassetid://13882574863"
@@ -356,12 +372,13 @@ h.JumpPower = 50
 end
 end
 end)
-warn("R15 Fighter - All You See Is ".._G.VisColour..", Go Fight!")
+warn("R15 Fighter - All You See Is "..VisColour..", Go Fight!")
 chatfunc("Sup Man!")
-local sfx = Instance.new("Sound",c)
+local sfx = Instance.new("Sound",c.Humanoid.HumanoidDescription)
 sfx.SoundId = "rbxassetid://184105182"
 sfx.Volume = 10
 sfx:Play()
+sfx.Name = "Sup Man!"
  local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
  pcall(function()
 for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
