@@ -22,8 +22,6 @@ repeat task.wait() until isfile("wab.mp3")
 local realn = math.random(1,4)
 math.random(tick()/realn)
 local n = math.random(1,4)
-print(n)
-n=4
 local song = Instance.new("Sound",c)
 if n == 1 then
 song.SoundId = getcustomasset("api.mp3")
