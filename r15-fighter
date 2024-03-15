@@ -350,7 +350,7 @@ end
    if h.WalkSpeed == 16 then
 h.WalkSpeed = 24
 h.HipHeight = olh 
-a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
+a.run.RunAnim.AnimationId = "rbxassetid://16552646349"
 elseif h.WalkSpeed == 24 then
 h.HipHeight = olh
 h.WalkSpeed = 45
