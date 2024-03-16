@@ -15,8 +15,8 @@ if not isfile("moonwaffle.wav") then
 writefile("moonwaffle.wav",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/moonwaffle%20(1).wav"))
 end
 repeat task.wait() until isfile("moonwaffle.wav")
-if not isfile("wab.mp3") then
-writefile("wab.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/wab.mp3"))
+if not isfile("obey.mp3") then
+writefile("obey.mp3",game:HttpGet("https://github.com/Nitro-GT/music/raw/main/wab.mp3"))
 end
 repeat task.wait() until isfile("wab.mp3")
 local realn = math.random(1,4)
@@ -26,7 +26,7 @@ local song = Instance.new("Sound",c)
 if n == 1 then
 song.SoundId = getcustomasset("api.mp3")
 elseif n == 2 then
-song.SoundId = getcustomasset("wab.mp3")
+song.SoundId = getcustomasset("obey.mp3")
 Instance.new("DistortionSoundEffect",song).Level = 0.35
 elseif n == 3 then
 song.SoundId = getcustomasset("shadow.mp3")
