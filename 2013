@@ -29,7 +29,7 @@ local Figure = game.Players.LocalPlayer.Character
 local anima = Figure.Animate
 anima:ClearAllChildren()
 --game:GetObjects("rbxassetid://10951278153")[1]
-anima.Disabled = false
+--anima.Disabled = false
 
 	local Char = Figure
 	local Hum = Figure.Humanoid or Char:FindFirstChildOfClass("AnimationController")
