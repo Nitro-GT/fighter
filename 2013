@@ -13,7 +13,7 @@ repeat wait() until plr.Character:FindFirstChild("Animate")
 
 plr.Character.Animate.Disabled = true
 
-plr.Character.Animate:Destroy()
+--plr.Character.Animate:Destroy()
 task.wait(.1)
 
 function   waitForChild(parent, childName)
@@ -26,8 +26,11 @@ function   waitForChild(parent, childName)
 end
 
 local Figure = game.Players.LocalPlayer.Character
+local anima = Figure.Animate
+anima:ClearAllChildren()
+game:GetObjects("rbxassetid://10951278153")[1]:GetChi;dren().Parent = anima
+anima.Disabled = false
 
-game:GetObjects("rbxassetid://10951278153")[1].Parent = Figure
 	local Char = Figure
 	local Hum = Figure.Humanoid or Char:FindFirstChildOfClass("AnimationController")
 
