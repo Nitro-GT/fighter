@@ -28,7 +28,7 @@ end
 local Figure = game.Players.LocalPlayer.Character
 local anima = Figure.Animate
 anima:ClearAllChildren()
-game:GetObjects("rbxassetid://10951278153")[1]:GetChi;dren().Parent = anima
+game:GetObjects("rbxassetid://10951278153")[1]:GetChildren().Parent = anima
 anima.Disabled = false
 
 	local Char = Figure
