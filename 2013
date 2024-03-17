@@ -1,12 +1,20 @@
  local plr =game.Players.LocalPlayer
-workspace:SetAttribute("RbxLegacyAnimationBlending", true)
+--workspace:SetAttribute("RbxLegacyAnimationBlending", true)
+ game.Players.LocalPlayer.Character:BreakJoints()
+   game.Players.LocalPlayer.Character=nil
+   Connection = game.Workspace.DescendantAdded:Connect(function(c)
+       if c.Name == "Animate" then
+           c.Disabled=true    
+           
+       end
+   end)
 plr.CharacterAdded:Connect(function()
 repeat wait() until plr.Character:FindFirstChild("Animate")
 
 plr.Character.Animate.Disabled = true
 
 plr.Character.Animate:Destroy()
-wait(1)
+task.wait(.1)
 
 function   waitForChild(parent, childName)
 	local child = parent:findFirstChild(childName)
