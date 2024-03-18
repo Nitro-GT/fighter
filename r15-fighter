@@ -27,7 +27,6 @@ if n == 1 then
 song.SoundId = getcustomasset("api.mp3")
 elseif n == 2 then
 song.SoundId = getcustomasset("obey.mp3")
-Instance.new("DistortionSoundEffect",song).Level = 0.35
 elseif n == 3 then
 song.SoundId = getcustomasset("shadow.mp3")
 elseif n == 4 then
