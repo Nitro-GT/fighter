@@ -1,0 +1,383 @@
+--R15 Fighter
+-- All you see is red, go fight
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/autoexec/main/prompt.txt"))()
+plr = game.Players.LocalPlayer
+local c = game.Players.LocalPlayer.Character
+repeat task.wait() until isfile("wab.mp3")
+local realn = math.random(1,4)
+math.random(tick()/realn)
+local n = math.random(1,4)
+local song = Instance.new("Sound",c)
+if n == 1 then
+song.SoundId = getcustomasset("api.mp3")
+elseif n == 2 then
+song.SoundId = getcustomasset("obey.mp3")
+elseif n == 3 then
+song.SoundId = getcustomasset("shadow.mp3")
+elseif n == 4 then
+song.SoundId = getcustomasset("moonwaffle.wav")
+Instance.new("DistortionSoundEffect",song).Level = 0.5
+end
+prompt("Visualiser?","Don't use this if you are epileptic.","Yes","No")
+repeat task.wait() until _G.pr == true or _G.pr == false
+_G.Visualiser = _G.pr
+song.Looped = true
+song.Volume = 1
+song:Play()
+for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+C3 = Color3.new
+local alive = true
+local lplr = game:GetService("Players").LocalPlayer
+local Character = lplr.Character
+local script = game:GetObjects("rbxassetid://9717225780")[1]
+sick = song
+song.Name = "song"
+local VisColour
+local VISUALS = game.Lighting
+local VISUALSSz = game.Lighting
+local Bloom = script.Bloom
+Bloom.Parent = VISUALS
+script["C-Correction"].Parent = VISUALS
+math.randomseed(tick()*n-55)
+print(math.random(1,3))
+local n2 = math.random(1,3)
+if n2 == 1 then
+VisColour = "Red"
+elseif  n2 == 3 then
+VisColour = "Blue"
+elseif  n2 == 2 then
+VisColour = "White"
+end
+if VisColour == "Red" then
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(160,0,0)
+elseif VisColour == "Blue" then
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(0,0,200)
+elseif VisColour == "White" then
+VISUALS["C-Correction"].TintColor = Color3.fromRGB(255,255,255)
+end
+local oldtod = game.Lighting.TimeOfDay
+function FixLighting()
+	game.Lighting.Ambient = Color3.fromRGB(70, 70, 70)
+	game.Lighting.OutdoorAmbient = Color3.fromRGB(70, 70, 70)
+	game.Lighting.FogColor = Color3.fromRGB(192, 192, 192)
+	game.Lighting.TimeOfDay = "11:00:00"
+	pcall(function()
+	VISUALS["C-Correction"]:Destroy()
+	Bloom:Destroy()
+	end)
+	game.Lighting.ExposureCompensation = 0
+	game.Lighting.FogEnd = 100000
+	game.Lighting.EnvironmentDiffuseScale = 1
+	game.Lighting.Brightness = 2
+	workspace.CurrentCamera.FieldOfView = 70 
+end
+coroutine.resume(coroutine.create(function()
+	while alive == true and _G.Visualiser == true do
+		wait()
+			if VisColour == "Red" then
+			VISUALSSz.Brightness = 2.25
+			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/math.random(500,1000)),math.min(1,0),math.min(1,0))
+			VISUALS["C-Correction"].Saturation = 2.5
+			elseif VisColour == "Blue" then
+			VISUALSSz.Brightness = 2.25
+			VISUALS.FogColor =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			VISUALS.Ambient =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			VISUALS.OutdoorAmbient = C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/math.random(500,1000)))
+			elseif VisColour == "White" then
+			VISUALSSz.Brightness = 2.25
+			VISUALS.FogColor =  C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS.Ambient = C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS.OutdoorAmbient = C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			VISUALS["C-Correction"].Saturation = -1
+			end
+			VISUALS.TimeOfDay = 0
+			Bloom.Intensity = 0 + sick.PlaybackLoudness/500
+			VISUALSSz.ExposureCompensation = 0 + sick.PlaybackLoudness/130
+			VISUALSSz.FogEnd = sick.PlaybackLoudness
+			VISUALS.EnvironmentDiffuseScale = 0 + sick.PlaybackLoudness/100
+			VISUALS["C-Correction"].Contrast= 0.1 + sick.PlaybackLoudness/1000
+			workspace.CurrentCamera.FieldOfView = 70 - sick.PlaybackLoudness/100
+	end
+end))
+local h = c.Humanoid
+h.UseJumpPower = true
+local a = c.Animate
+local olh = h.HipHeight
+h.HipHeight = olh
+local UserInputService = game:GetService("UserInputService")
+h.WalkSpeed = 16 
+a.run.RunAnim.AnimationId = "rbxassetid://387947975"
+a.fall.FallAnim.AnimationId = "rbxassetid://10921077030"
+a.jump.JumpAnim.AnimationId = "rbxassetid://13813559069"
+a.idle.Animation1.AnimationId = "rbxassetid://3293641938"
+a.idle.Animation2.AnimationId = "rbxassetid://3293642554"
+--a.toolnone.ToolNoneAnim.AnimationId = "rbxassetid://0"
+     local slice = Instance.new("Animation")
+     slice.AnimationId = "rbxassetid://13882574863"
+     local slicep = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice)
+      
+     local slice2 = Instance.new("Animation")
+     slice2.AnimationId = "rbxassetid://13882579000"
+     local slicep2 = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(slice2)
+
+     local punch = Instance.new("Animation")
+     punch.AnimationId = "rbxassetid://13593839963"
+     local punchp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(punch)
+        
+     local pto = Instance.new("Animation")
+     pto.AnimationId = "rbxassetid://13574621523"
+     local ptop = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(pto)
+     
+     local kick = Instance.new("Animation")
+     kick.AnimationId = "rbxassetid://13593830055"
+     local kickp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(kick)
+     
+     local function fix(anim)
+     anim:AdjustSpeed(1)
+     wait(anim.Length)
+     anim:AdjustSpeed(0)
+     wait(0.025)
+     anim:Stop()
+     for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+     	v:Stop()
+	 end
+	    h.HipHeight = olh
+h.JumpPower = 0.1
+wait(.025)
+h.Jump = true
+wait(.025)
+h.JumpPower = 50
+wait(.005)
+anim:Stop()
+wait(.005)
+anim:Stop()
+wait(.005)
+anim:Stop()
+end
+
+ArtificialHB = Instance.new("BindableEvent", script)
+ArtificialHB.Name = "ArtificialHB"
+
+
+	function Swait(num)
+		if num == 0 or num == nil then
+			game:GetService("RunService").RenderStepped:wait()
+		else
+			for i = 1, num do
+				game:GetService("RunService").RenderStepped:wait()
+			end
+		end
+	end
+
+
+IT = Instance.new
+CF = CFrame.new
+VT = Vector3.new
+RAD = math.rad
+C3 = Color3.new
+UD2 = UDim2.new
+BRICKC = BrickColor.new
+ANGLES = CFrame.Angles
+EULER = CFrame.fromEulerAnglesXYZ
+COS = math.cos
+ACOS = math.acos
+SIN = math.sin
+ASIN = math.asin
+ABS = math.abs
+HUGE = math.huge
+SR = string.reverse
+MRANDOM = math.random
+FLOOR = math.floor
+local FONTS = {
+	Enum.Font.Antique,
+	Enum.Font.Arcade,
+	Enum.Font.Arial,
+	Enum.Font.ArialBold,
+	Enum.Font.Bodoni,
+	Enum.Font.Cartoon,
+	Enum.Font.Code,
+	Enum.Font.Fantasy,
+	Enum.Font.Garamond,
+	Enum.Font.Highway,
+	Enum.Font.Legacy,
+	Enum.Font.SciFi,
+	Enum.Font.SourceSans,
+	Enum.Font.SourceSansBold,
+	Enum.Font.SourceSansItalic,
+	Enum.Font.SourceSansLight,
+	Enum.Font.SourceSansSemibold,
+	Enum.Font.LuckiestGuy,
+	Enum.Font.Creepster,
+	Enum.Font.RobotoCondensed,
+	Enum.Font.RobotoMono,
+	Enum.Font.Fantasy,
+	Enum.Font.DenkOne,
+	Enum.Font.Cartoon,
+	Enum.Font.Oswald,
+	Enum.Font.AmaticSC
+}
+function chatfunc(text)
+	local chat = coroutine.wrap(function()
+		if Character:FindFirstChild("TalkingBillBoard")~= nil then
+			Character:FindFirstChild("TalkingBillBoard"):destroy()
+		end
+		local Bill = Instance.new("BillboardGui",c)
+		Bill.Size = UDim2.new(0,100,0,40)
+		Bill.StudsOffset = VT(0,3.5,0)
+		Bill.Adornee = c.Head
+		Bill.Name = "TalkingBillBoard"
+		local Hehe = Instance.new("TextLabel",Bill)
+		Hehe.BackgroundTransparency = 1
+		Hehe.BorderSizePixel = 0
+		Hehe.Text = text
+		Hehe.Font = "Bodoni"
+		Hehe.TextSize = 40
+		Hehe.TextStrokeTransparency = 0
+		Hehe.Size = UDim2.new(1,0,0.5,0)
+		coroutine.resume(coroutine.create(function()
+			while Hehe ~= nil do
+				Swait()	
+				Hehe.Font = FONTS[MRANDOM(1, #FONTS)]
+				Hehe.Position = UDim2.new(0, 0, .05, 0)
+				if _G.VisColour == "Red" then
+				Hehe.TextColor3 =   C3(math.min(1,sick.PlaybackLoudness/750),math.min(1,0),math.min(1,0))
+			elseif _G.VisColour == "Blue" then
+				Hehe.TextColor3 =  C3(math.min(1,0),math.min(1,0),math.min(1,sick.PlaybackLoudness/750))
+			elseif _G.VisColour == "White" then
+				Hehe.TextColor3 =  C3(math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500),math.min(1,sick.PlaybackLoudness/500))
+			end
+			Hehe.TextStrokeColor3 = BrickColor.Black().Color
+			end
+		end))
+		for i = 1,string.len(text),1 do
+			Swait()
+			Hehe.Text = string.sub(text,1,i)
+			if not c.Humanoid.Status:FindFirstChild("augh") then
+			local q = Instance.new("Sound",c.Humanoid.Status)
+			q.Name = "augh"
+			q.SoundId = "rbxassetid://500472891"
+			q.Volume = 4
+			q:Play()
+			wait(q.TimeLength)
+			q:Destroy()
+			end
+		end
+		Swait(90)
+		for i = 0, 1, .025 do
+			Swait()
+			Hehe.TextStrokeTransparency = i
+			Hehe.TextTransparency = i
+		end
+		Hehe:Destroy()
+	end)
+	chat()
+end
+
+local holyballs = game.Players.LocalPlayer.Chatted:Connect(function(msg)
+	chatfunc(msg)
+end)
+local function animp(id)
+      --h.HipHeight = olh
+     local annim = Instance.new("Animation")
+     annim.AnimationId = "rbxassetid://"..id
+     local animp = game.Players.LocalPlayer.Character.Humanoid.Animator:LoadAnimation(annim)
+     animp:Play()
+     wait()
+     fix(animp)
+     end
+UserInputService.InputBegan:Connect(function(Input, IsTyping)
+if IsTyping == false then
+if Input.KeyCode == Enum.KeyCode.E then
+   slicep:Play()
+    slicep.Ended:Connect(function()
+    slicep:Stop()
+    end)
+ fix(slicep)
+   elseif  Input.KeyCode == Enum.KeyCode.R then
+   slicep2:Play()
+    slicep2.Ended:Connect(function()
+    slicep2:Stop()
+    end)
+fix(slicep2)
+      elseif  Input.KeyCode == Enum.KeyCode.Q then
+      h.HipHeight = olh
+   punchp:Play()
+   punchp.Ended:Connect(function()
+   h.HipHeight = olh 
+   punchp:Stop()
+   end)
+  fix(punchp)
+    elseif  Input.KeyCode == Enum.KeyCode.T then
+      h.HipHeight = olh
+   ptop:Play()
+   ptop.Ended:Connect(function()
+   h.HipHeight = olh
+   ptop:Stop()
+   end)
+fix(ptop)
+    elseif  Input.KeyCode == Enum.KeyCode.F then
+      h.HipHeight = olh
+   kickp:Play()
+   kickp.Ended:Connect(function()
+   h.HipHeight = olh 
+   kickp:Stop()
+   end)
+fix(kickp)
+   elseif  Input.KeyCode == Enum.KeyCode.Z then 
+         for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+   if h.WalkSpeed == 16 then
+h.WalkSpeed = 24
+h.HipHeight = olh 
+a.run.RunAnim.AnimationId = "rbxassetid://13761449655"
+elseif h.WalkSpeed == 24 then
+h.HipHeight = olh
+h.WalkSpeed = 45
+a.run.RunAnim.AnimationId = "rbxassetid://13585113452"
+elseif h.WalkSpeed == 45 then
+h.HipHeight = olh
+h.WalkSpeed = 16 
+a.run.RunAnim.AnimationId = "rbxassetid://387947975"
+end
+h.JumpPower = 0.1
+wait(.005)
+h.Jump = true
+wait(.005)
+h.JumpPower = 50
+   elseif  Input.KeyCode == Enum.KeyCode.C then 
+   animp("13593837026")
+end
+end
+end)
+warn("R15 Fighter - All You See Is "..VisColour..", Go Fight!")
+chatfunc("Sup Man!")
+local sfx = Instance.new("Sound",c.Humanoid.HumanoidDescription)
+sfx.SoundId = "rbxassetid://184105182"
+sfx.Volume = 10
+sfx:Play()
+sfx.Name = "Sup Man!"
+ local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
+ pcall(function()
+for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
+if v.Name == "RunAnim" then
+v:AdjustSpeed(1.1059)
+	end
+	end
+	end)
+	end)
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+alive = false
+task.wait(.1)
+FixLighting()
+connect:Disconnect()
+holyballs:Disconnect()
+end)
+if _G.Visualiser == false then
+FixLighting()
+end
