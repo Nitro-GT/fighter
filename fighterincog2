@@ -3,7 +3,6 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/autoexec/main/prompt.txt"))()
 plr = game.Players.LocalPlayer
 local c = game.Players.LocalPlayer.Character
-repeat task.wait() until isfile("wab.mp3")
 local realn = math.random(1,4)
 math.random(tick()/realn)
 local n = math.random(1,4)
