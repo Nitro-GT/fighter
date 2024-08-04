@@ -3,36 +3,36 @@ repeat task.wait() until game:IsLoaded()
 task.wait(.35)
 local plr = game:GetService("Players").LocalPlayer
 local function anims()
-for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+for i,v in pairs(game:GetService("Players").LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
 end
-game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = false
-game.Players.LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId    = "http://www.roblox.com/asset/?id=12520982150"
-game.Players.LocalPlayer.Character.Animate.fall.FallAnim.AnimationId      = "http://www.roblox.com/asset/?id=12520972571"
-game.Players.LocalPlayer.Character.Animate.idle.Animation1.AnimationId    = "http://www.roblox.com/asset/?id=12521158637"
-game.Players.LocalPlayer.Character.Animate.idle.Animation2.AnimationId    = "http://www.roblox.com/asset/?id=12521162526"
-game.Players.LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId      = "http://www.roblox.com/asset/?id=12520880485"
-game.Players.LocalPlayer.Character.Animate.run.RunAnim.AnimationId        = "http://www.roblox.com/asset/?id=12518152696"
-game.Players.LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId      = "http://www.roblox.com/asset/?id=12518152696" --nope
-game.Players.LocalPlayer.Character.Animate.cheer.CheerAnim.AnimationId = "http://www.roblox.com/asset/?id=12521021991"
-game.Players.LocalPlayer.Character.Animate.point.PointAnim.AnimationId = "http://www.roblox.com/asset/?id=12521007694" 
-game.Players.LocalPlayer.Character.Animate.laugh.LaughAnim.AnimationId = "http://www.roblox.com/asset/?id=12521018724"
-game.Players.LocalPlayer.Character.Animate.wave.WaveAnim.AnimationId = "http://www.roblox.com/asset/?id=12521004586"
-game.Players.LocalPlayer.Character.Animate.dance2.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521169800"
-game.Players.LocalPlayer.Character.Animate.dance2.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521173533"
-game.Players.LocalPlayer.Character.Animate.dance2.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521027874"
-game.Players.LocalPlayer.Character.Animate.dance.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521009666"
-game.Players.LocalPlayer.Character.Animate.dance.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521151637"
-game.Players.LocalPlayer.Character.Animate.dance.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521015053"
-game.Players.LocalPlayer.Character.Animate.dance3.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521178362"
-game.Players.LocalPlayer.Character.Animate.dance3.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521181508"
-game.Players.LocalPlayer.Character.Animate.dance3.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521184133"
-game.Players.LocalPlayer.Character.Animate.toolnone.ToolNoneAnim.AnimationId = "http://www.roblox.com/asset/?id=12520996634"
-game.Players.LocalPlayer.Character.Animate.toollunge.ToolLungeAnim.AnimationId = "http://www.roblox.com/asset/?id=12521002003"
-game.Players.LocalPlayer.Character.Animate.toolslash.ToolSlashAnim.AnimationId = "http://www.roblox.com/asset/?id=12520999032"
-game.Players.LocalPlayer.Character.Animate.sit.SitAnim.AnimationId = "http://www.roblox.com/asset/?id=12520993168"
+game:GetService("Players").LocalPlayer.Character.Humanoid.AutoJumpEnabled = false
+game:GetService("Players").LocalPlayer.Character.Animate.climb.ClimbAnim.AnimationId    = "http://www.roblox.com/asset/?id=12520982150"
+game:GetService("Players").LocalPlayer.Character.Animate.fall.FallAnim.AnimationId      = "http://www.roblox.com/asset/?id=12520972571"
+game:GetService("Players").LocalPlayer.Character.Animate.idle.Animation1.AnimationId    = "http://www.roblox.com/asset/?id=12521158637"
+game:GetService("Players").LocalPlayer.Character.Animate.idle.Animation2.AnimationId    = "http://www.roblox.com/asset/?id=12521162526"
+game:GetService("Players").LocalPlayer.Character.Animate.jump.JumpAnim.AnimationId      = "http://www.roblox.com/asset/?id=12520880485"
+game:GetService("Players").LocalPlayer.Character.Animate.run.RunAnim.AnimationId        = "http://www.roblox.com/asset/?id=12518152696"
+game:GetService("Players").LocalPlayer.Character.Animate.walk.WalkAnim.AnimationId      = "http://www.roblox.com/asset/?id=12518152696" --nope
+game:GetService("Players").LocalPlayer.Character.Animate.cheer.CheerAnim.AnimationId = "http://www.roblox.com/asset/?id=12521021991"
+game:GetService("Players").LocalPlayer.Character.Animate.point.PointAnim.AnimationId = "http://www.roblox.com/asset/?id=12521007694" 
+game:GetService("Players").LocalPlayer.Character.Animate.laugh.LaughAnim.AnimationId = "http://www.roblox.com/asset/?id=12521018724"
+game:GetService("Players").LocalPlayer.Character.Animate.wave.WaveAnim.AnimationId = "http://www.roblox.com/asset/?id=12521004586"
+game:GetService("Players").LocalPlayer.Character.Animate.dance2.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521169800"
+game:GetService("Players").LocalPlayer.Character.Animate.dance2.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521173533"
+game:GetService("Players").LocalPlayer.Character.Animate.dance2.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521027874"
+game:GetService("Players").LocalPlayer.Character.Animate.dance.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521009666"
+game:GetService("Players").LocalPlayer.Character.Animate.dance.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521151637"
+game:GetService("Players").LocalPlayer.Character.Animate.dance.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521015053"
+game:GetService("Players").LocalPlayer.Character.Animate.dance3.Animation1.AnimationId = "http://www.roblox.com/asset/?id=12521178362"
+game:GetService("Players").LocalPlayer.Character.Animate.dance3.Animation2.AnimationId = "http://www.roblox.com/asset/?id=12521181508"
+game:GetService("Players").LocalPlayer.Character.Animate.dance3.Animation3.AnimationId = "http://www.roblox.com/asset/?id=12521184133"
+game:GetService("Players").LocalPlayer.Character.Animate.toolnone.ToolNoneAnim.AnimationId = "http://www.roblox.com/asset/?id=12520996634"
+game:GetService("Players").LocalPlayer.Character.Animate.toollunge.ToolLungeAnim.AnimationId = "http://www.roblox.com/asset/?id=12521002003"
+game:GetService("Players").LocalPlayer.Character.Animate.toolslash.ToolSlashAnim.AnimationId = "http://www.roblox.com/asset/?id=12520999032"
+game:GetService("Players").LocalPlayer.Character.Animate.sit.SitAnim.AnimationId = "http://www.roblox.com/asset/?id=12520993168"
 
-for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+for i,v in pairs(game:GetService("Players").LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
     v:Stop()
 end
 
@@ -43,7 +43,7 @@ print("")
 else
 anims()
 local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
-for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
+for i,v in next, game:GetService("Players").LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
 if v.Name == "ClimbAnim" and v.Speed ~= 0 then
 if v.Speed > 0 then
 		v:AdjustSpeed(1.1)
@@ -73,7 +73,7 @@ print("")
 else
 anims()
  local connect = game:GetService("RunService").Heartbeat:Connect(function(set)
-for i,v in next, game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
+for i,v in next, game:GetService("Players").LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks() do
 if v.Name == "ClimbAnim" and v.Speed ~= 0 then
 if v.Speed > 0 then
 		v:AdjustSpeed(1.1)
